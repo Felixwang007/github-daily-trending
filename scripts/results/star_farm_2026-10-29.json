@@ -1,13 +1,132 @@
 {
- "naive_hits": 7,
- "corrected": {
-  "curl_pipe_shell": 1
+ "measured_at": "2026-10-29 (Asia/Shanghai)",
+ "method": {
+  "sample": "GitHub search API: q=created:>2026-10-21, sort=stars, order=desc, per_page=40",
+  "metadata_fields": [
+   "stargazers_count",
+   "forks_count",
+   "size(KB)",
+   "created_at",
+   "pushed_at",
+   "license"
+  ],
+  "readme_scan": "40 READMEs fetched via /repos/{r}/readme, decoded from base64, matched against naive and word-boundary regexes",
+  "events_scan": "/repos/{r}/events (rolling window, up to 3x100 events) -> WatchEvent timestamps bucketed at 1min and 5min"
  },
- "domspam": [
-  [
-   "smithjohn78390/tongjiang-lab",
-   "lab.tongjiang.app",
-   112
+ "sample_size": 40,
+ "flags": {
+  "stars>=300_and_forks==0": 0,
+  "stars>=300_and_created_to_push<=10s": 0,
+  "stars>=300_and_created_to_push<=60s": 1,
+  "forks>stars": 1,
+  "no_license_and_stars>=300": 3,
+  "root_entries<=2_and_stars>=300": 2
+ },
+ "readme_scan": {
+  "naive_ps_regex_hits": 7,
+  "naive_false_positives": 7,
+  "false_positive_cause": "pattern 'irm\\s+' matches the tail of the word 'confirm'",
+  "corrected_ps_download_exec": 0,
+  "corrected_curl_pipe_shell": 1,
+  "corrected_wget_pipe_shell": 0,
+  "readmes_repeating_one_domain_50x_plus": [
+   [
+    "smithjohn78390/tongjiang-lab",
+    "lab.tongjiang.app",
+    112
+   ]
   ]
+ },
+ "forks_gt_stars_repos": [
+  {
+   "full": "zgx949/ai-pojia",
+   "stars": 440,
+   "forks": 587
+  }
+ ],
+ "star_arrival_shape": {
+  "deepopen-com/deepopen-3d-webs": {
+   "n": 290,
+   "span_h": 44.9,
+   "peak_min": 7,
+   "peak_5": 22,
+   "burst": 7.6,
+   "gaps": 7
+  },
+  "zgx949/ai-pojia": {
+   "n": 130,
+   "span_h": 46.3,
+   "peak_min": 2,
+   "peak_5": 3,
+   "burst": 2.3,
+   "gaps": 8
+  },
+  "ZiChuanLan/agent-purge": {
+   "n": 168,
+   "span_h": 25.8,
+   "peak_min": 2,
+   "peak_5": 5,
+   "burst": 3.0,
+   "gaps": 4
+  },
+  "unclebob/ub-mode": {
+   "n": 283,
+   "span_h": 6.5,
+   "peak_min": 4,
+   "peak_5": 12,
+   "burst": 4.2,
+   "gaps": 0
+  },
+  "songjianyang/xss-audit": {
+   "n": 233,
+   "span_h": 97.9,
+   "peak_min": 3,
+   "peak_5": 6,
+   "burst": 2.6,
+   "gaps": 25
+  },
+  "Motionsites-AI/claude-skill": {
+   "n": 270,
+   "span_h": 22.3,
+   "peak_min": 3,
+   "peak_5": 5,
+   "burst": 1.9,
+   "gaps": 0
+  },
+  "KillaBoi/StealMyBitcoin-PoC": {
+   "n": 249,
+   "span_h": 66.6,
+   "peak_min": 3,
+   "peak_5": 4,
+   "burst": 1.6,
+   "gaps": 11
+  },
+  "t3dotgg/tstack": {
+   "n": 271,
+   "span_h": 30.8,
+   "peak_min": 3,
+   "peak_5": 4,
+   "burst": 1.5,
+   "gaps": 0
+  },
+  "assetnote/php2shell-scanner": {
+   "n": 272,
+   "span_h": 107.1,
+   "peak_min": 3,
+   "peak_5": 5,
+   "burst": 1.8,
+   "gaps": 34
+  }
+ },
+ "baseline_for_comparison": {
+  "2026-10-05": "4 of the top 10 newly created repos were single-file README farms with 0 forks, 0 releases, no license",
+  "2026-10-14": "one repo showed 22+20+4 stars inside three consecutive minutes (WatchEvent clustering)",
+  "2026-10-29": "0 of 40 have forks==0; densest 5-minute bucket is 7.6% of a repo's sampled stars"
+ },
+ "caveats": [
+  "Forks and stars are snapshots, not time series; a farm can add fake forks too.",
+  "/events exposes only the last ~300 events, so arrival shape is a rolling window.",
+  "Stars can also be bought slowly (a few per hour) with real accounts; shape probes miss that.",
+  "Absence of a signature is not proof of legitimacy."
  ]
 }
